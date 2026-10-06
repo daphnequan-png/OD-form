@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<title>Leadership Accelerator Nominations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap">
+<style>
+/* Layout: forest masthead band, then a single readable form column */
+:root{
+  --bg:#FAF8F3; --surface:#FFFFFF; --ink:#062812; --ink-2:#264330; --muted:#5E7464;
+  --line:#E6E7DE; --sage:#B3CBB9; --euc:#64856B; --desert:#AB8854; --tan:#DCBA79;
+  --band:#062812; --band-ink:#FAF8F3; --field:#FFFFFF; --error:#A33A2B; --ok:#3E6B4A;
+  --display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --body:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0B1D11; --surface:#122818; --ink:#FAF8F3; --ink-2:#E6E7DE; --muted:#A9BCAE;
+  --line:#264330; --sage:#B3CBB9; --euc:#8FB098; --desert:#DCBA79; --tan:#DCBA79;
+  --band:#04180B; --band-ink:#FAF8F3; --field:#0E2214; --error:#E08A7B; --ok:#8FC79E; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0B1D11; --surface:#122818; --ink:#FAF8F3; --ink-2:#E6E7DE; --muted:#A9BCAE;
+  --line:#264330; --sage:#B3CBB9; --euc:#8FB098; --desert:#DCBA79; --tan:#DCBA79;
+  --band:#04180B; --band-ink:#FAF8F3; --field:#0E2214; --error:#E08A7B; --ok:#8FC79E; color-scheme:dark }
+*[hidden]{display:none!important}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font:300 15px/1.55 var(--body); margin:0}
+.band{background:var(--band); color:var(--band-ink); padding-block:44px 40px; padding-inline:16px}
+.wrap{max-width:780px; margin:0 auto}
+.eyebrow{font:600 11px/1 var(--body); letter-spacing:.14em; text-transform:uppercase; color:var(--sage)}
+h1{font:700 clamp(30px,5vw,44px)/1.1 var(--display); margin:14px 0 6px; text-wrap:balance}
+h1 em{font-weight:500; color:var(--sage)}
+.lede{max-width:62ch; color:#E6E7DE; margin:14px 0 0}
+.facts{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:26px; font-size:13px; color:var(--sage)}
+.facts b{display:block; font:700 22px/1.1 var(--display); color:var(--tan)}
+main{padding-inline:16px; padding-block:32px 64px}
+.note{border-left:3px solid var(--desert); background:var(--surface); padding:14px 18px; color:var(--ink-2); font-size:14px; margin-bottom:28px}
+form{display:grid; gap:28px}
+fieldset{border:1px solid var(--line); background:var(--surface); border-radius:6px; padding:22px; margin:0; display:grid; gap:18px; min-width:0}
+legend{font:700 19px/1.2 var(--display); color:var(--ink); padding:0 6px}
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+label{display:grid; gap:6px; font-weight:600; font-size:13px; color:var(--ink-2); min-width:0}
+.hint{font-weight:300; color:var(--muted); font-size:12.5px}
+input[type=text],input[type=email],input[type=number],select,textarea{
+  font:400 15px/1.4 var(--body); color:var(--ink); background:var(--field);
+  border:1px solid var(--line); border-radius:4px; padding:10px 12px; width:100%}
+textarea{min-height:96px; resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--euc); outline-offset:1px}
+.req::after{content:" *"; color:var(--desert)}
+.check{display:flex; gap:10px; align-items:flex-start; font-weight:400; font-size:14px; color:var(--ink-2)}
+.check input{margin-top:3px; accent-color:var(--euc)}
+.radios{display:flex; flex-wrap:wrap; gap:10px}
+.radios label{display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:4px; padding:9px 14px; font-weight:400; cursor:pointer; background:var(--field)}
+.radios input{accent-color:var(--euc)}
+.err{color:var(--error); font-size:13px; font-weight:500}
+.actions{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+button{font:600 14px/1 var(--body); letter-spacing:.04em; border-radius:4px; padding:14px 22px; cursor:pointer; border:1px solid transparent}
+.primary{background:var(--ink); color:var(--bg)}
+.ghost{background:transparent; color:var(--ink-2); border-color:var(--line)}
+button:disabled{opacity:.5; cursor:not-allowed}
+.status{font-size:14px}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:22px; display:grid; gap:12px}
+.panel h2{font:700 22px/1.2 var(--display); margin:0}
+.mine li{margin-bottom:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <div class="eyebrow">Athena Leadership Accelerator · Nomination</div>
+    <h1>Nominate a future <em>Operations Director</em></h1>
+    <p class="lede">ODs nominate people leaders who represent credible OD successors. Hub VPs review and approve final nominations, then a readiness review selects ten participants, each paired with a VP mentor for twelve months.</p>
+    <div class="facts">
+      <div><b>10</b>cohort seats</div>
+      <div><b>12</b>months, launching October 2026</div>
+      <div><b>4 hrs</b>per month protected time</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="note">Eligible: Operations Managers, Partnership Managers, and other people leaders. Program completion strengthens promotion evidence. It does not guarantee appointment to an OD role.</p>
+
+    <div id="thanks" class="panel" hidden>
+      <h2>Nomination received</h2>
+      <p id="thanksText"></p>
+      <div class="actions"><button class="ghost" id="another" type="button">Nominate someone else</button></div>
+    </div>
+
+    <form id="form" novalidate>
+      <fieldset>
+        <legend>About you</legend>
+        <div class="grid">
+          <label for="nomRole"><span class="req">Your role</span>
+            <select id="nomRole" required>
+              <option value="">Select</option><option>Operations Director</option><option>Hub VP</option><option>Other leader</option>
+            </select></label>
+          <label for="nomHub"><span class="req">Your hub</span>
+            <select id="nomHub" required>
+              <option value="">Select</option><option>Philippines</option><option>Guatemala</option><option>Kenya</option><option>Enterprise</option><option>Other</option>
+            </select></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Nominee</legend>
+        <div class="grid">
+          <label for="neName"><span class="req">Full name</span><input id="neName" type="text" required autocomplete="off"></label>
+          <label for="neEmail"><span class="req">Athena email</span><input id="neEmail" type="email" required autocomplete="off"></label>
+          <label for="neRole"><span class="req">Current role</span>
+            <select id="neRole" required>
+              <option value="">Select</option><option>Operations Manager</option><option>Partnership Manager (CPM)</option><option>Other people leader</option>
+            </select></label>
+          <label for="neHub"><span class="req">Hub or team</span><input id="neHub" type="text" required placeholder="e.g. Guatemala, Aegis"></label>
+          <label for="neTenure">Time in current role<span class="hint">Months</span><input id="neTenure" type="number" min="0" max="240"></label>
+          <label for="neScope">Current scope<span class="hint">Direct reports, partnerships or accounts led</span><input id="neScope" type="text"></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Evidence of readiness</legend>
+        <label for="evPerf"><span class="req">Performance evidence</span><span class="hint">Results this person has owned: KPIs, client outcomes, retention, team performance.</span><textarea id="evPerf" required></textarea></label>
+        <label for="evJudgment"><span class="req">Business judgment</span><span class="hint">One decision they made that shows they see beyond their own delivery.</span><textarea id="evJudgment" required></textarea></label>
+        <label for="evRange">Leadership range<span class="hint">How they handle escalations, influence peers, or develop their team.</span><textarea id="evRange"></textarea></label>
+        <div>
+          <div class="req" style="font-weight:600;font-size:13px;color:var(--ink-2);margin-bottom:8px">Readiness for an OD role</div>
+          <div class="radios" role="radiogroup" aria-label="Readiness">
+            <label><input type="radio" name="ready" value="Ready now"> Ready now</label>
+            <label><input type="radio" name="ready" value="Ready in 12 months"> Ready in 12 months</label>
+            <label><input type="radio" name="ready" value="Ready in 12-24 months"> Ready in 12–24 months</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Commitment</legend>
+        <label class="check" for="ackTime"><input id="ackTime" type="checkbox"><span><span class="req">I will protect about 4 hours a month for this person</span> for pre-work, the live masterclass, mentor meetings and capstone work.</span></label>
+        <label class="check" for="ackDiscussed"><input id="ackDiscussed" type="checkbox"><span>I have discussed this nomination with the nominee.</span></label>
+        <label class="check" for="ackNoPromise"><input id="ackNoPromise" type="checkbox"><span><span class="req">I understand the program does not guarantee an OD appointment</span>, and that Hub VP approval is required.</span></label>
+      </fieldset>
+
+      <div class="actions">
+        <button class="primary" id="submit" type="submit">Submit nomination</button>
+        <span id="status" class="status" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+
+    <section id="mine" class="panel" style="margin-top:28px" hidden>
+      <h2>Your nominations</h2>
+      <ul class="mine" id="mineList"></ul>
+    </section>
+  </div>
+</main>
+
+<script>
+function validateFormClient(payload) {
+  const missing = [];
+  if (!payload.nomRole) missing.push('your role');
+  if (!payload.nomHub) missing.push('your hub');
+  if (!payload.neName) missing.push('nominee name');
+  if (!payload.neEmail) {
+    missing.push('nominee email');
+  } else if (!/^\S+@\S+\.\S+$/.test(payload.neEmail)) {
+    missing.push('a valid nominee email');
+  }
+  if (!payload.neRole) missing.push('current role');
+  if (!payload.neHub) missing.push('hub or team');
+  if (!payload.evPerf) missing.push('performance evidence');
+  if (!payload.evJudgment) missing.push('business judgment');
+  if (!payload.ready) missing.push('readiness');
+  if (!payload.ackTime) missing.push('the time commitment');
+  if (!payload.ackNoPromise) missing.push('the no-guarantee acknowledgment');
+
+  if (missing.length > 0) {
+    let formattedList = '';
+    if (missing.length === 1) {
+      formattedList = missing[0];
+    } else if (missing.length === 2) {
+      formattedList = missing[0] + ' and ' + missing[1];
+    } else {
+      formattedList = missing.slice(0, -1).join(', ') + ', and ' + missing[missing.length - 1];
+    }
+    return 'Add ' + formattedList + ' before submitting.';
+  }
+  return null;
+}
+
+function loadMyNominations() {
+  if (typeof google === 'undefined' || !google.script || !google.script.run) return;
+  google.script.run
+    .withSuccessHandler(function(rows) {
+      const minePanel = document.getElementById('mine');
+      const mineList = document.getElementById('mineList');
+      mineList.textContent = '';
+
+      if (rows && rows.length > 0) {
+        rows.forEach(function(item) {
+          const li = document.createElement('li');
+          li.textContent = (item.nomineeName || '') + ' (' + (item.nomineeRole || '') + ') · ' + (item.status || '') + ' · ' + (item.submittedAt || '');
+          mineList.appendChild(li);
+        });
+        minePanel.hidden = false;
+      } else {
+        minePanel.hidden = true;
+      }
+    })
+    .withFailureHandler(function(err) {
+      console.error('Failed to load nominations:', err);
+    })
+    .getMyNominations();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  loadMyNominations();
+
+  const form = document.getElementById('form');
+  const submitBtn = document.getElementById('submit');
+  const statusEl = document.getElementById('status');
+  const thanksPanel = document.getElementById('thanks');
+  const thanksText = document.getElementById('thanksText');
+  const anotherBtn = document.getElementById('another');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    statusEl.textContent = '';
+    statusEl.className = 'status';
+
+    const selectedReady = document.querySelector('input[name="ready"]:checked');
+
+    const payload = {
+      nomRole: document.getElementById('nomRole').value,
+      nomHub: document.getElementById('nomHub').value,
+      neName: document.getElementById('neName').value,
+      neEmail: document.getElementById('neEmail').value,
+      neRole: document.getElementById('neRole').value,
+      neHub: document.getElementById('neHub').value,
+      neTenure: document.getElementById('neTenure').value,
+      neScope: document.getElementById('neScope').value,
+      evPerf: document.getElementById('evPerf').value,
+      evJudgment: document.getElementById('evJudgment').value,
+      evRange: document.getElementById('evRange').value,
+      ready: selectedReady ? selectedReady.value : '',
+      ackTime: document.getElementById('ackTime').checked,
+      ackDiscussed: document.getElementById('ackDiscussed').checked,
+      ackNoPromise: document.getElementById('ackNoPromise').checked
+    };
+
+    const err = validateFormClient(payload);
+    if (err) {
+      statusEl.textContent = err;
+      statusEl.className = 'status err';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    if (typeof google === 'undefined' || !google.script || !google.script.run) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit nomination';
+      statusEl.textContent = 'Google Apps Script environment not detected.';
+      statusEl.className = 'status err';
+      return;
+    }
+
+    google.script.run
+      .withSuccessHandler(function(res) {
+        form.hidden = true;
+        thanksText.textContent = res.nomineeName + ' is nominated. The program team will route this to the ' + res.nominatorHub + ' Hub VP for approval.';
+        thanksPanel.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit nomination';
+        loadMyNominations();
+      })
+      .withFailureHandler(function(error) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit nomination';
+        statusEl.textContent = error.message || String(error);
+        statusEl.className = 'status err';
+      })
+      .submitNomination(payload);
+  });
+
+  anotherBtn.addEventListener('click', function() {
+    form.reset();
+    thanksPanel.hidden = true;
+    form.hidden = false;
+    statusEl.textContent = '';
+    statusEl.className = 'status';
+  });
+});
+</script>
+</body>
+</html>
