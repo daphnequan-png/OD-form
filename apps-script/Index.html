@@ -3,63 +3,73 @@
 <head>
 <base target="_top">
 <title>Leadership Accelerator Nominations</title>
+<meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap">
 <style>
 /* Layout: forest masthead band, then a single readable form column */
 :root{
-  --bg:#FAF8F3; --surface:#FFFFFF; --ink:#062812; --ink-2:#264330; --muted:#5E7464;
-  --line:#E6E7DE; --sage:#B3CBB9; --euc:#64856B; --desert:#AB8854; --tan:#DCBA79;
-  --band:#062812; --band-ink:#FAF8F3; --field:#FFFFFF; --error:#A33A2B; --ok:#3E6B4A;
+  /* Athena dark theme, always on */
+  --bg:#062812;        /* Deep Forest: page background */
+  --band:#031A0A;      /* header band, a shade darker than the page */
+  --band-ink:#FAF8F3;  /* Ivory Mist */
+  --surface:#0D3219;   /* cards and note panel, a shade lighter than the page */
+  --field:#08250F;     /* input / select / textarea fill */
+  --line:#264330;      /* Moss: card and field borders, table rules */
+  --ink:#FAF8F3;       /* Ivory Mist: headings, input text */
+  --ink-2:#E6E7DE;     /* Limestone: labels, body copy in cards */
+  --muted:#A9BCAE;     /* hint text */
+  --sage:#B3CBB9;      /* Light Sage: eyebrow, italic H1 words, fact captions */
+  --euc:#8FB098;       /* Eucalyptus (lightened for dark): focus ring, links */
+  --desert:#DCBA79;    /* required asterisks, note border (Golden Tan on dark) */
+  --tan:#DCBA79;       /* Golden Tan: fact numbers */
+  --error:#E08A7B;
+  --ok:#8FC79E;
   --display:"Playfair Display", Georgia, "Times New Roman", serif;
   --body:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0B1D11; --surface:#122818; --ink:#FAF8F3; --ink-2:#E6E7DE; --muted:#A9BCAE;
-  --line:#264330; --sage:#B3CBB9; --euc:#8FB098; --desert:#DCBA79; --tan:#DCBA79;
-  --band:#04180B; --band-ink:#FAF8F3; --field:#0E2214; --error:#E08A7B; --ok:#8FC79E; color-scheme:dark } }
-:root[data-theme="dark"]{
-  --bg:#0B1D11; --surface:#122818; --ink:#FAF8F3; --ink-2:#E6E7DE; --muted:#A9BCAE;
-  --line:#264330; --sage:#B3CBB9; --euc:#8FB098; --desert:#DCBA79; --tan:#DCBA79;
-  --band:#04180B; --band-ink:#FAF8F3; --field:#0E2214; --error:#E08A7B; --ok:#8FC79E; color-scheme:dark }
 *[hidden]{display:none!important}
 *{box-sizing:border-box}
-body{background:var(--bg); color:var(--ink); font:300 15px/1.55 var(--body); margin:0}
+html, body { background: var(--bg); }
+body{color:var(--ink); font:300 15px/1.55 var(--body); margin:0}
 .band{background:var(--band); color:var(--band-ink); padding-block:44px 40px; padding-inline:16px}
 .wrap{max-width:780px; margin:0 auto}
 .eyebrow{font:600 11px/1 var(--body); letter-spacing:.14em; text-transform:uppercase; color:var(--sage)}
-h1{font:700 clamp(30px,5vw,44px)/1.1 var(--display); margin:14px 0 6px; text-wrap:balance}
-h1 em{font-weight:500; color:var(--sage)}
-.lede{max-width:62ch; color:#E6E7DE; margin:14px 0 0}
+h1{font:700 clamp(30px,5vw,44px)/1.1 var(--display); margin:14px 0 6px; text-wrap:balance; color:var(--ink)}
+h1 em{font-style:italic; font-weight:500; color:var(--sage)}
+.lede{max-width:62ch; color:var(--ink-2); margin:14px 0 0}
 .facts{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:26px; font-size:13px; color:var(--sage)}
-.facts b{display:block; font:700 22px/1.1 var(--display); color:var(--tan)}
+.facts b{display:block; font:700 22px/1.1 var(--display); color:var(--tan); font-family:var(--display)}
 main{padding-inline:16px; padding-block:32px 64px}
-.note{border-left:3px solid var(--desert); background:var(--surface); padding:14px 18px; color:var(--ink-2); font-size:14px; margin-bottom:28px}
+.note{background:var(--surface); border-left:3px solid var(--desert); padding:14px 18px; color:var(--ink); font-size:14px; margin-bottom:28px}
 form{display:grid; gap:28px}
-fieldset{border:1px solid var(--line); background:var(--surface); border-radius:6px; padding:22px; margin:0; display:grid; gap:18px; min-width:0}
-legend{font:700 19px/1.2 var(--display); color:var(--ink); padding:0 6px}
+fieldset, .panel{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:22px; margin:0; display:grid; gap:18px; min-width:0}
+legend{font:700 19px/1.2 var(--display); color:var(--ink); padding:0 6px; font-family:var(--display)}
 .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
 label{display:grid; gap:6px; font-weight:600; font-size:13px; color:var(--ink-2); min-width:0}
 .hint{font-weight:300; color:var(--muted); font-size:12.5px}
 input[type=text],input[type=email],input[type=number],select,textarea{
   font:400 15px/1.4 var(--body); color:var(--ink); background:var(--field);
   border:1px solid var(--line); border-radius:4px; padding:10px 12px; width:100%}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+select option { background: var(--field); color: var(--ink); }
 textarea{min-height:96px; resize:vertical}
 input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--euc); outline-offset:1px}
 .req::after{content:" *"; color:var(--desert)}
 .check{display:flex; gap:10px; align-items:flex-start; font-weight:400; font-size:14px; color:var(--ink-2)}
 .check input{margin-top:3px; accent-color:var(--euc)}
 .radios{display:flex; flex-wrap:wrap; gap:10px}
-.radios label{display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:4px; padding:9px 14px; font-weight:400; cursor:pointer; background:var(--field)}
-.radios input{accent-color:var(--euc)}
+.radios label{display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:4px; padding:9px 14px; font-weight:400; cursor:pointer; background:var(--field); color:var(--ink-2)}
+input[type=radio], input[type=checkbox]{accent-color:var(--euc)}
 .err{color:var(--error); font-size:13px; font-weight:500}
 .actions{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
 button{font:600 14px/1 var(--body); letter-spacing:.04em; border-radius:4px; padding:14px 22px; cursor:pointer; border:1px solid transparent}
 .primary{background:var(--ink); color:var(--bg)}
+.primary:hover{background:var(--ink-2)}
 .ghost{background:transparent; color:var(--ink-2); border-color:var(--line)}
 button:disabled{opacity:.5; cursor:not-allowed}
 .status{font-size:14px}
-.panel{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:22px; display:grid; gap:12px}
 .panel h2{font:700 22px/1.2 var(--display); margin:0}
 .mine li{margin-bottom:6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}

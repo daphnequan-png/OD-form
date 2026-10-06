@@ -31,9 +31,8 @@ Google Apps Script web app for submitting Athena Leadership Accelerator nominati
    - Nominators submit via the web app URL and do not need view or edit access to the Sheet itself.
 
 5. **Updating Code**
-   - After editing code in the Apps Script editor or pushing via Clasp:
-   - Click **Deploy** → **Manage deployments**.
-   - Edit active deployment, select **Version: New version**, and click **Deploy**. The Web App URL remains unchanged.
+   - After editing code in the Apps Script editor (such as pasting an updated `Index.html`) or pushing via Clasp:
+   - Go to **Deploy** → **Manage deployments** → **Edit (pencil icon)** → **Version: New version** → **Deploy**. The web app URL stays the same.
 
 6. **Testing Deployment**
    - Submit a test nomination using a second Athena account.
