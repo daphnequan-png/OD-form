@@ -1,14 +1,17 @@
 # Team Preferences & Favorites Form
 
-A clean, modern, and mobile-friendly HTML/CSS form designed to collect employee preferences for team birthdays, work anniversaries, dietary restrictions, and favorite treats.
+A clean, modern, and mobile-friendly solution to collect employee preferences for team birthdays, work anniversaries, dietary restrictions, and favorite treats.
 
-Hosted via **GitHub Pages** and configured to email responses directly using **Formspree**.
+This repository supports both:
+1. **GitHub Pages HTML/CSS Form** (with Formspree integration for direct email submission)
+2. **Google Apps Script (`Code.gs`)** (to programmatically generate a Google Form linked to a Google Sheet with a "Raw data" responses tab)
 
 ---
 
-## Features
+## 1. GitHub Pages HTML/CSS Form Setup
 
-- **Header**: "Team Preferences & Favorites" with a welcoming description.
+### Features
+- **Header**: "Team Preferences & Favorites" with welcoming description.
 - **Fields**:
   - Full Name (Text, Required)
   - Email Address (Email, Required)
@@ -21,46 +24,51 @@ Hosted via **GitHub Pages** and configured to email responses directly using **F
   - Preferred Gift Card Stores (Amazon, Starbucks, Target, etc.)
   - Dietary Restrictions or Allergies
   - Any specific dislikes or things to avoid
-- **Responsive Design**: Clean corporate neutral aesthetic, optimized for both desktop and mobile viewports.
-- **Form Submission**: Formspree integration with AJAX background submission and user feedback messages.
+- **Responsive Styling**: Clean corporate neutral palette, smooth rounded borders, and mobile optimization.
+- **Submission**: Formspree integration with background AJAX fetch request and status message feedback.
 
----
+### Formspree Configuration
+1. Sign up or log into [Formspree.io](https://formspree.io/).
+2. Create a new form and set the destination email address (e.g., Executive Assistant or HR contact).
+3. Copy your Formspree endpoint URL (e.g. `https://formspree.io/f/YOUR_FORM_ID`).
+4. In `index.html`, replace `YOUR_FORM_ID` in the `<form action="...">` attribute with your unique Formspree form ID.
 
-## Setup & Deployment Instructions
-
-### 1. Setting up Formspree Endpoint
-
-1. Go to [Formspree.io](https://formspree.io/) and sign up or log into your account.
-2. Click **Create New Form**.
-3. Name your form (e.g., *Team Preferences Form*) and enter the target email address where form responses (such as the EA or HR manager) should be sent.
-4. Copy your unique **Form Endpoint URL** (it looks like `https://formspree.io/f/xeqy...`).
-5. Open `index.html` in your repository.
-6. Find the `<form>` tag and replace `YOUR_FORM_ID` with your actual Formspree endpoint ID:
-   ```html
-   <form id="preferencesForm" action="https://formspree.io/f/xeqy..." method="POST">
-   ```
-7. Save and commit your changes.
-
-### 2. Publishing via GitHub Pages
-
+### Publishing via GitHub Pages
 1. Push this repository to GitHub.
-2. Navigate to your repository on GitHub.com.
-3. Click on **Settings** (top navigation tab).
-4. In the left sidebar, under the **Code and automation** section, click **Pages**.
-5. Under **Build and deployment** -> **Source**, select **Deploy from a branch**.
-6. Under **Branch**, select `main` (or `master`) branch and `/ (root)` folder, then click **Save**.
-7. Wait 1-2 minutes for GitHub Pages to build and deploy.
-8. Your published form will be live at:
-   `https://<your-username>.github.io/<your-repo-name>/`
+2. Go to **Settings** > **Pages** in your GitHub repository.
+3. Under **Source**, select **Deploy from a branch**.
+4. Select the `main` (or `master`) branch and `/ (root)` folder, then click **Save**.
+5. Access your live form at `https://<your-username>.github.io/<your-repo-name>/`.
 
 ---
 
-## Local Development & Testing
+## 2. Google Apps Script Setup (`Code.gs`)
 
-You can preview `index.html` locally by simply opening the file in any modern browser, or by serving it using a local HTTP server:
+If you prefer using Google Forms linked to Google Sheets:
+
+### Script Capabilities
+- Programmatically creates a Google Form titled **"Team Preferences & Favorites"**.
+- Adds all required form fields with proper field types (Short Answer, Paragraph, Date, Required attributes).
+- Creates a destination Google Spreadsheet and links the form to it.
+- Programmatically renames the response tab to **"Raw data"**.
+
+### Execution Instructions
+1. Open Google Apps Script ([script.google.com](https://script.google.com/)).
+2. Create a new project.
+3. Replace the content of `Code.gs` with the code provided in `Code.gs` in this repository.
+4. Select `createPreferenceForm` from the function dropdown at the top.
+5. Click **Run**.
+6. When prompted, authorize the requested Google Form and Google Drive/Sheets permissions.
+7. Open the Execution Log to view the generated Google Form URL and Google Sheet URL.
+8. Submit a test response to verify that responses land directly in the **"Raw data"** tab of the linked sheet.
+
+---
+
+## Local Testing
+
+Preview `index.html` locally using Python's built-in HTTP server:
 
 ```bash
-# Using Python 3 HTTP server
 python3 -m http.server 8000
 ```
-Then visit `http://localhost:8000` in your web browser.
+Then navigate to `http://localhost:8000` in your web browser.
