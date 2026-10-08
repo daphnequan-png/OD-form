@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Preferences &amp; Favorites</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --border-focus: #2563eb;
+      --error-color: #dc2626;
+      --success-color: #16a34a;
+      --radius: 8px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #e2e8f0;
+      padding: 2.5rem;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      color: #334155;
+    }
+
+    label .required {
+      color: var(--error-color);
+      margin-left: 0.2rem;
+    }
+
+    .help-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-main);
+      background-color: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%3C64748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+      padding-right: 2.25rem;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      width: 100%;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    .status-message {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .status-message.success {
+      display: block;
+      background-color: #f0fdf4;
+      color: var(--success-color);
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-message.error {
+      display: block;
+      background-color: #fef2f2;
+      color: var(--error-color);
+      border: 1px solid #fecaca;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+
+      .container {
+        padding: 1.5rem;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Team Preferences &amp; Favorites</h1>
+      <p>Help us celebrate your milestones! Please share your birthday, work anniversary, and favorite treats so we can make special occasions extra meaningful.</p>
+    </header>
+
+    <form id="preferencesForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="fullName">Full Name <span class="required">*</span></label>
+        <input type="text" id="fullName" name="fullName" required placeholder="e.g. Jane Doe">
+      </div>
+
+      <!-- Email Address -->
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="jane.doe@company.com">
+      </div>
+
+      <!-- Birth Month & Day -->
+      <div class="form-group">
+        <label>Birth Month &amp; Day</label>
+        <div class="form-row">
+          <div class="form-group">
+            <select id="birthMonth" name="birthMonth" aria-label="Birth Month">
+              <option value="" disabled selected>Select Month</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="birthDay" name="birthDay" aria-label="Birth Day">
+              <option value="" disabled selected>Select Day</option>
+              <script>
+                // Generate days 1 to 31
+                for (let i = 1; i <= 31; i++) {
+                  document.write('<option value="' + i + '">' + i + '</option>');
+                }
+              </script>
+            </select>
+          </div>
+        </div>
+        <p class="help-text">Year is not required.</p>
+      </div>
+
+      <!-- Work Anniversary Date -->
+      <div class="form-group">
+        <label for="anniversaryDate">Work Anniversary Date</label>
+        <input type="date" id="anniversaryDate" name="anniversaryDate">
+        <p class="help-text">Select your start date or anniversary date.</p>
+      </div>
+
+      <!-- Favorite Snacks & Treats -->
+      <div class="form-group">
+        <label for="favoriteSnacks">Favorite Snacks &amp; Treats</label>
+        <textarea id="favoriteSnacks" name="favoriteSnacks" placeholder="e.g. Dark chocolate, salty pretzels, gummy bears, potato chips"></textarea>
+      </div>
+
+      <!-- Favorite Drinks -->
+      <div class="form-group">
+        <label for="favoriteDrinks">Favorite Drinks</label>
+        <input type="text" id="favoriteDrinks" name="favoriteDrinks" placeholder="e.g. Iced Vanilla Latte, Green Tea, Sparkling Water, Diet Coke">
+      </div>
+
+      <!-- Favorite Restaurants / Coffee Shops -->
+      <div class="form-group">
+        <label for="favoritePlaces">Favorite Restaurants / Coffee Shops</label>
+        <input type="text" id="favoritePlaces" name="favoritePlaces" placeholder="e.g. Starbucks, Sweetgreen, Chipotle, local bakery">
+      </div>
+
+      <!-- Hobbies & Interests -->
+      <div class="form-group">
+        <label for="hobbies">Hobbies &amp; Interests</label>
+        <textarea id="hobbies" name="hobbies" placeholder="e.g. Hiking, reading sci-fi, gardening, gaming, cooking"></textarea>
+      </div>
+
+      <!-- Preferred Gift Card Stores -->
+      <div class="form-group">
+        <label for="giftCards">Preferred Gift Card Stores</label>
+        <input type="text" id="giftCards" name="giftCards" placeholder="e.g. Amazon, Starbucks, Target, DoorDash">
+      </div>
+
+      <!-- Dietary Restrictions or Allergies -->
+      <div class="form-group">
+        <label for="dietaryRestrictions">Dietary Restrictions or Allergies</label>
+        <input type="text" id="dietaryRestrictions" name="dietaryRestrictions" placeholder="e.g. Gluten-free, Vegan, Nut allergy, None">
+      </div>
+
+      <!-- Specific Dislikes or Things to Avoid -->
+      <div class="form-group">
+        <label for="dislikes">Any Specific Dislikes or Things to Avoid</label>
+        <input type="text" id="dislikes" name="dislikes" placeholder="e.g. Black licorice, artificial banana flavor, scented candles">
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Preferences</button>
+      <div id="statusMessage" class="status-message"></div>
+
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('preferencesForm');
+    const statusMessage = document.getElementById('statusMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      statusMessage.className = 'status-message';
+      statusMessage.style.display = 'none';
+
+      // Check if Formspree action URL has been configured or fallback to mock submit
+      const actionUrl = form.getAttribute('action');
+      const isPlaceholder = actionUrl.includes('YOUR_FORM_ID');
+
+      if (isPlaceholder) {
+        // Fallback demo handling when placeholder is still set
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Preferences';
+          statusMessage.textContent = 'Form submitted successfully! (Note: Replace YOUR_FORM_ID in index.html with your actual Formspree endpoint to receive emails).';
+          statusMessage.className = 'status-message success';
+          form.reset();
+        }, 800);
+        return;
+      }
+
+      try {
+        const response = await fetch(actionUrl, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          statusMessage.textContent = 'Thank you! Your preferences have been saved successfully.';
+          statusMessage.className = 'status-message success';
+          form.reset();
+        } else {
+          const data = await response.json();
+          if (data && data.errors) {
+            statusMessage.textContent = data.errors.map(error => error.message).join(', ');
+          } else {
+            statusMessage.textContent = 'Oops! There was a problem submitting your form. Please try again.';
+          }
+          statusMessage.className = 'status-message error';
+        }
+      } catch (error) {
+        statusMessage.textContent = 'Oops! Network error submitting form. Please check your connection and try again.';
+        statusMessage.className = 'status-message error';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Preferences';
+      }
+    });
+  </script>
+</body>
+</html>
